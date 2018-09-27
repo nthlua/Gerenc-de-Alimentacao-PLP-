@@ -20,6 +20,7 @@ struct Usuario {
 	float carboidrato;
 	float gorduras;
 	int pontos;
+	int numero_refeicao;
 
 	void tipoDieta() {
 		if (td == ganho_de_massa) {
@@ -57,10 +58,13 @@ struct Usuario {
 	}
 	
 	void menu3() {
+		cout << "Para seguir essa dieta, é necessário realizar 5 refeições por dia"
+		cout << "Informe o número da refeição:"
+		cin >> numero_refeicao;
 		cout << "Informe a quantidade de pontos da sua refeição: ";
 		cin >> pontos;
 		
-		retorno3(pontos);
+		retorno3(numero_refeicao, pontos);
 	}
 	
 	void retorno1(float &proteina, float &carboidrato, float &gorduras) {
@@ -106,10 +110,32 @@ struct Usuario {
 		
 	}
 	
-	void retorno3(int &pontos){
-		// NATHALYA	
-	}
-
+	void retorno3(int &numero_refeicao, int &pontos){
+		bool passou = 0;
+		int soma_pontos = 0;
+		int refeicoes[5];
+		refeicoes [numero_refeicao] = pontos;
+		for (i = 0; i < num_usuarios; i++){
+			soma_pontos = soma_pontos + refeicoes;
+			if (soma_pontos > 30 && soma_pontos != 30){
+				passou = 1;
+			}
+		}
+		if (pontos > 6 && pontos != 6 && passou = 1){
+			cout << "A sua refeição foi mais pontuada que o desejado e você ultrapassou os pontos diários. Diminua a pontuação na próxima refeição";
+		}
+		if (pontos > 6 && pontos != 6 && passou = 0){
+			cout << "A sua refeição foi mais pontuada que o desejado. Diminua a pontuação na próxima refeição"
+		}
+		if (pontos < 6 && pontos != 6 && passou = 1){
+			cout << "A sua refeição foi menos pontuada que o desejado porém, você já atingiu os pontos diários. Cuidado na próxima refeição"
+		}
+		if (pontos < 6 && pontos != 6 && passou = 0){
+			cout << "A sua refeição foi menos pontuada que o desejado. Aumente a pontuação da próxima refeição";
+		}
+		if (pontos == 6 && passou = 0){
+			cout << "Parabéns, sua refeição tem a pontuação desejada e você está dentro da margem diária"
+		}
 };
 
 int main() {
